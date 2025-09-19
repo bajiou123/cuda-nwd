@@ -1,0 +1,10 @@
+{
+  "method": "tools/call",
+  "params": {
+    "name": "check_login_status",
+    "arguments": {},
+    "_meta": {
+      "progressToken": 14
+    }
+  }
+}

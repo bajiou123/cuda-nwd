@@ -1,0 +1,92 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "MCP Tools API",
+    "description": "OpenAPI specification for MCP Tools server",
+    "version": "v1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:18060",
+      "description": "MCP Server"
+    }
+  ],
+  "paths": {
+    "/mcp": {
+      "post": {
+        "summary": "Execute MCP tool",
+        "description": "Call a specific MCP tool with parameters",
+        "operationId": "callTool",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "method": {
+                    "type": "string",
+                    "example": "tools/call"
+                  },
+                  "params": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "example": "check_login_status"
+                      },
+                      "arguments": {
+                        "type": "object"
+                      },
+                      "_meta": {
+                        "type": "object",
+                        "properties": {
+                          "progressToken": {
+                            "type": "integer"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "content": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "example": "text"
+                          },
+                          "text": {
+                            "type": "string",
+                            "example": "登录状态检查成功: &{IsLoggedIn:true Username:xiaohongshu-mcp}"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}
